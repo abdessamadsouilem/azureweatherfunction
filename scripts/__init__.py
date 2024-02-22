@@ -36,7 +36,7 @@ def store_data_in_db(data):
     try:
         client = pymongo.MongoClient(COSMOS_DB_CONNECTION_STRING)
         db = client.weather_db
-        collection = db.weather_data
+        collection = db.weather_datas
         # Update the document if it exists, otherwise insert a new one
         collection.update_one({"location.name": data['location']['name']}, {"$set": data}, upsert=True)
         logging.info(f"Weather data updated in DB successfully for {data['location']['name']}")
